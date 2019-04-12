@@ -1,40 +1,12 @@
 
 Vue + SpringBoot实现的博客系统
 
-线上地址：<a target="_blank" href="http://shiminghui.top:8000">For Fun</a>
+# 写在前面
 
-## ssr 服务端渲染版本 
+声明：本系统是从 <a href="https://github.com/shimh-develop/blog-vue-springboot"> shimh大神</a> fork 下来的开源项目。作用于毕业设计。在此基础上，进行设计开发。旨在打造一个类似简书，csdn这种。分享类博客系统。
 
-<a href="https://github.com/shimh-develop/blog-vue-springboot/tree/ssr" target="_blank">ssr分支</a>
+关于更多信息，请访问大神源码。进行fork，stars.
 
-# 效果图
-
-## 首页
-
-![image](https://github.com/shimh-develop/blog-vue-springboot/blob/master/document/index2.png)
-
-## 登录页
-![image](https://github.com/shimh-develop/blog-vue-springboot/blob/master/document/login.png)
-
-## 注册页
-![image](https://github.com/shimh-develop/blog-vue-springboot/blob/master/document/register.png)
-
-## 文章分类-标签、详情
-![image](https://github.com/shimh-develop/blog-vue-springboot/blob/master/document/ct.png)
-
-![image](https://github.com/shimh-develop/blog-vue-springboot/blob/master/document/ct-detail.png)
-
-## 文章归档
-![image](https://github.com/shimh-develop/blog-vue-springboot/blob/master/document/archive.png)
-
-## 写文章
-![image](https://github.com/shimh-develop/blog-vue-springboot/blob/master/document/write.png)
-
-## 文章详情
-![image](https://github.com/shimh-develop/blog-vue-springboot/blob/master/document/detail.png)
-
-## 评论
-![image](https://github.com/shimh-develop/blog-vue-springboot/blob/master/document/comment2.png)
 
 # 技术
 
@@ -91,6 +63,25 @@ Vue + SpringBoot实现的博客系统
 
 ## 方式一  直接运行SpringBoot项目（已将打包的静态文件放到了 resources/static下）
 1. 将blog-api导入到IDE工具中
+
+<font color="red" size="3"> 注意：</font> </br>
+
+a：注意自己的jdk版本号，是不是跟pom.xml指定的版本号一致。
+该项目下的jdk版本号为：1.8
+```
+<java.version>1.8</java.version>
+```
+b：数据库版本问题
+同样是pom.xml配置
+```
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.15</version>
+    </dependency> 
+```
+我这里把数据库配置改成自己电脑配置的mysql版本号。
+
 2. resources/sql/blog-schema.sql、blog-data.sql导入MySQL数据库
 3. 打开Redis数据库
 4. resources/application.properties 修改MySQL、Redis连接
@@ -108,6 +99,7 @@ Vue + SpringBoot实现的博客系统
 3. 访问：http://localhost:8080
 4. 修改blog-app/src 下的文件进行开发
 5. npm run build 生成最终静态文件
+
 
 
 
