@@ -5,7 +5,7 @@
     </video>-->
 
     <div class="me-login-box me-login-box-radius">
-      <h1>TopC 登录</h1>
+      <h1>Topcoder 登录</h1>
 
       <el-form ref="userForm" :model="userForm" :rules="rules">
         <el-form-item prop="account">
@@ -25,7 +25,7 @@
         <p>
           Designed by
           <strong>
-            <router-link to="/" class="me-login-design-color">TopC</router-link>
+            <router-link to="/" class="me-login-design-color">Topcoder</router-link>
           </strong>
         </p>
       </div>

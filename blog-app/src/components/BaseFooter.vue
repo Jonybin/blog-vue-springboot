@@ -4,7 +4,7 @@
       <p>
         Designed by
         <strong>
-          <router-link to="/" class="me-login-design-color">TopC</router-link>
+          <router-link to="/" class="me-login-design-color">Topcoder</router-link>
         </strong>
       </p>
     </div>

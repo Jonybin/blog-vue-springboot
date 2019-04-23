@@ -1,12 +1,13 @@
 <template>
-  <div v-title data-title="TopC Find Yourself">
+  <div v-title data-title="Topcoder">
     <el-container>
       <el-main class="me-articles">
         <article-scroll-page></article-scroll-page>
       </el-main>
 
       <el-aside>
-        <card-me class="me-area"></card-me>
+        <!-- <card-me class="me-area"></card-me> -->
+        <card-advertise :advertise="advertise" class="me-area"></card-advertise>
         <card-tag :tags="hotTags"></card-tag>
 
         <card-article cardHeader="最热文章" :articles="hotArticles"></card-article>
@@ -21,6 +22,7 @@
 
 <script>
 import CardMe from "@/components/card/CardMe";
+import Advertise from "@/components/card/Advertise";
 import CardArticle from "@/components/card/CardArticle";
 import CardArchive from "@/components/card/CardArchive";
 import CardTag from "@/components/card/CardTag";
@@ -37,13 +39,21 @@ export default {
     this.getNewArtices();
     this.getHotTags();
     this.listArchives();
+    this.getAdvertise();
   },
   data() {
     return {
       hotTags: [],
       hotArticles: [],
       newArticles: [],
-      archives: []
+      archives: [],
+      advertise: [
+        {
+          src:
+            "http://a0.att.hudong.com/05/18/01200000194499134433185504843.jpg",
+          title: "ceshi"
+        }
+      ]
     };
   },
   methods: {
@@ -109,9 +119,25 @@ export default {
             });
           }
         });
+    },
+    getAdvertise() {
+      getAdvertise()
+        .then(data => {
+          this.advertise = data.data;
+        })
+        .catch(error => {
+          if (error !== "error") {
+            that.$message({
+              type: "error",
+              message: "文章归档加载失败!",
+              showClose: true
+            });
+          }
+        });
     }
   },
   components: {
+    "card-advertise": Advertise,
     "card-me": CardMe,
     "card-article": CardArticle,
     "card-tag": CardTag,
