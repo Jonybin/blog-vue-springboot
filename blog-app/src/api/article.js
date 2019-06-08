@@ -18,6 +18,9 @@ export function getArticles(query, page) {
   })
 }
 
+export function getAdvertise() {
+  return request();
+}
 export function getHotArtices() {
   return request({
     url: '/articles/hot',

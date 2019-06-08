@@ -46,30 +46,35 @@
           </template>
 
           <template v-else>
-            <el-menu
+            <!-- <el-menu
               :default-active="activeIndex"
               class="el-menu-demo"
               mode="horizontal"
               @select="handleSelect"
             >
-              <el-submenu index>
+              <el-submenu index="2">
                 <template slot="title">
                   <img class="me-header-picture" :src="user.avatar">
                 </template>
-                <el-menu-item index @click="logout">
+                <el-menu-item index="2-1" @click="logout">
                   <i class="el-icon-back"></i>退出
                 </el-menu-item>
-                <el-menu-item index @click="logout">
-                  <i class="el-icon-back"></i>退出
-                </el-menu-item>
-                <el-menu-item index @click="logout">
-                  <i class="el-icon-back"></i>退出
-                </el-menu-item>
-                <el-menu-item index @click="logout">
-                  <i class="el-icon-back"></i>退出
-                </el-menu-item>
+                <el-menu-item index="2-2">我的博客</el-menu-item>
               </el-submenu>
-            </el-menu>
+            </el-menu>-->
+
+            <el-dropdown placement="bottom" @command="onSelected">
+              <span class="el-dropdown-link">
+                <div class="userSelect-container">
+                  <img class="me-header-picture" :src="user.avatar">
+                  <span>{{user.name}}</span>
+                </div>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="logout">退出</el-dropdown-item>
+                <el-dropdown-item command="own">个人中心</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
           </template>
         </el-menu>
       </el-col>
@@ -94,13 +99,27 @@ export default {
     user() {
       let login = this.$store.state.account.length != 0;
       let avatar = this.$store.state.avatar;
+      let name = this.$store.state.name;
       return {
         login,
-        avatar
+        avatar,
+        name
       };
+    },
+    handleSelect(key, keyPath) {
+      console.log(key, keyPath);
     }
   },
   methods: {
+    onSelected(val) {
+      if (val === "logout") {
+        this.logout();
+      }
+
+      if (val === "own") {
+        this.$router.push({ path: `/own` });
+      }
+    },
     logout() {
       let that = this;
       this.$store
@@ -147,5 +166,12 @@ export default {
   border-radius: 50%;
   vertical-align: middle;
   background-color: #5fb878;
+}
+.el-dropdown-link {
+  cursor: pointer;
+  color: #409eff;
+}
+.el-icon-arrow-down {
+  font-size: 12px;
 }
 </style>

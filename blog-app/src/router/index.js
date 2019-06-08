@@ -11,12 +11,12 @@ import BlogView from '@/views/blog/BlogView'
 import BlogAllCategoryTag from '@/views/blog/BlogAllCategoryTag'
 import BlogCategoryTag from '@/views/blog/BlogCategoryTag'*/
 
-import {Message} from 'element-ui';
+import { Message } from 'element-ui';
 
 
 import store from '@/store'
 
-import {getToken} from '@/request/token'
+import { getToken } from '@/request/token'
 
 Vue.use(Router)
 
@@ -25,6 +25,13 @@ const router = new Router({
     {
       path: '/write/:id?',
       component: r => require.ensure([], () => r(require('@/views/blog/BlogWrite')), 'blogwrite'),
+      meta: {
+        requireLogin: true
+      },
+    },
+    {
+      path: '/own',
+      component: r => require.ensure([], () => r(require('@/views/own/OwnInfo')), 'owninfo'),
       meta: {
         requireLogin: true
       },
@@ -75,7 +82,7 @@ const router = new Router({
 
   ],
   scrollBehavior(to, from, savedPosition) {
-    return {x: 0, y: 0}
+    return { x: 0, y: 0 }
   }
 })
 
@@ -84,13 +91,13 @@ router.beforeEach((to, from, next) => {
   if (getToken()) {
 
     if (to.path === '/login') {
-      next({path: '/'})
+      next({ path: '/' })
     } else {
       if (store.state.account.length === 0) {
         store.dispatch('getUserInfo').then(data => { //获取用户信息
           next()
         }).catch(() => {
-          next({path: '/'})
+          next({ path: '/' })
         })
       } else {
         next()
